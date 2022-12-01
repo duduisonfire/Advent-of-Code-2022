@@ -2,8 +2,8 @@ import fs = require('fs/promises');
 
 class InputRead {
     private static file: Array<string> = [];
-    private static elves: Array<string> = [];
-    private static mostValuableElf: string;
+    private static elves: Array<number> = [];
+    private static threeMostValuableElf: number[] = [];
 
     private static async readFile(filename: string): Promise<void>
     {
@@ -37,28 +37,33 @@ class InputRead {
             for (let index = 0; index < x.length; index++) {
                 element += Number(x[index]);
             }
-            return `${element}`;
+            return element;
         });
     }
 
-    public static async FindMostValuableElf() {
+    private static async FindThreeMostValuableElves() {
         await this.CalculateElvesCalories();
+        this.elves.sort((a,b) => a - b);
 
-        this.mostValuableElf = this.elves[0];
-        let next: string;
+        this.threeMostValuableElf.push(this.elves[this.elves.length-1]);
+        this.threeMostValuableElf.push(this.elves[this.elves.length-2]);
+        this.threeMostValuableElf.push(this.elves[this.elves.length-3]);
 
-        for (let index = 1; index < this.elves.length; index++) {
-            next = this.elves[index];
+        console.log(`The three most valuables elves: ${this.threeMostValuableElf}`);
+    }
 
-            if (Number(this.mostValuableElf) > Number(next)) {
-                this.mostValuableElf = this.mostValuableElf ;
-            } else {
-                this.mostValuableElf = next;
-            }
-        }
+    private static FindMostValuableElf() {
+        console.log(`The value of calories that the most valuable elf carries is: ${this.elves[this.elves.length-1]}.`);
+    }
 
-        console.log(`The most valuable elf carries ${this.mostValuableElf} calories.`);
+    public static async SumTheThreeMostValuablesElves() {
+        await this.FindThreeMostValuableElves();
+
+        let sum = this.threeMostValuableElf[0] + this.threeMostValuableElf[1] + this.threeMostValuableElf[2];
+
+        this.FindMostValuableElf();
+        console.log(`The sum of the calories that the three most valuable elves carry is: ${sum}.`)
     }
 }
 
-InputRead.FindMostValuableElf();
+InputRead.SumTheThreeMostValuablesElves();
