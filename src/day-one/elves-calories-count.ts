@@ -3,7 +3,7 @@ import fs = require('fs/promises');
 class InputRead {
     private static file: Array<string> = [];
     private static elves: Array<number> = [];
-    private static threeMostValuableElf: number[] = [];
+    private static threeMostValuableElves: number[] = [];
 
     private static async readFile(filename: string): Promise<void>
     {
@@ -45,11 +45,11 @@ class InputRead {
         await this.CalculateElvesCalories();
         this.elves.sort((a,b) => a - b);
 
-        this.threeMostValuableElf.push(this.elves[this.elves.length-1]);
-        this.threeMostValuableElf.push(this.elves[this.elves.length-2]);
-        this.threeMostValuableElf.push(this.elves[this.elves.length-3]);
+        this.threeMostValuableElves.push(this.elves[this.elves.length-1]);
+        this.threeMostValuableElves.push(this.elves[this.elves.length-2]);
+        this.threeMostValuableElves.push(this.elves[this.elves.length-3]);
 
-        console.log(`The three most valuables elves: ${this.threeMostValuableElf}`);
+        console.log(`The three most valuables elves: ${this.threeMostValuableElves}`);
     }
 
     private static FindMostValuableElf() {
@@ -59,7 +59,7 @@ class InputRead {
     public static async SumTheThreeMostValuablesElves() {
         await this.FindThreeMostValuableElves();
 
-        let sum = this.threeMostValuableElf[0] + this.threeMostValuableElf[1] + this.threeMostValuableElf[2];
+        let sum = this.threeMostValuableElves[0] + this.threeMostValuableElves[1] + this.threeMostValuableElves[2];
 
         this.FindMostValuableElf();
         console.log(`The sum of the calories that the three most valuable elves carry is: ${sum}.`)
