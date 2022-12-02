@@ -5,7 +5,7 @@ import { Scissors } from "./scissors";
 
 export class CreateGame2 {
 
-    static createEnemy(string: string): IOption | undefined {
+    static enemyOption(string: string): IOption | undefined {
         switch(string) {
             case 'A': return new Rock();
             case 'B': return new Paper();
@@ -13,8 +13,8 @@ export class CreateGame2 {
         }
     }
 
-    static createPlayer(string: string, enemy: string): IOption | undefined {
-        const compare = this.createEnemy(enemy) as IOption;
+    static playerOption(string: string, enemy: string): IOption | undefined {
+        const compare = this.enemyOption(enemy) as IOption;
 
         switch(string) {
             case 'X': {
@@ -30,7 +30,7 @@ export class CreateGame2 {
                     return new Paper();
                 }
             };
-            case 'Y': return this.createEnemy(enemy);
+            case 'Y': return this.enemyOption(enemy);
             case 'Z': {
                     if(compare.symbol === 'A'){
                         return new Paper();

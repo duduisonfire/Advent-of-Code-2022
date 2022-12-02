@@ -10,8 +10,8 @@ const contents = fs.readFileSync(`${__dirname}/input.txt`, 'utf-8');
 let file = contents.split(/\r?\n/);
 
 for (let index = 0; index < file.length; index++) {
-    let player: IOption = CreateGame2.createPlayer(file[index].charAt(2), file[index].charAt(0)) as IOption;
-    let enemy: IOption = CreateGame2.createEnemy(file[index].charAt(0)) as IOption;
+    let player: IOption = CreateGame2.playerOption(file[index].charAt(2), file[index].charAt(0)) as IOption;
+    let enemy: IOption = CreateGame2.enemyOption(file[index].charAt(0)) as IOption;
 
     igor.score += player.points;
     
@@ -28,6 +28,6 @@ for (let index = 0; index < file.length; index++) {
         case -1: {
         }; break;
     }
+    
+    console.log(igor.score)
 }
-
-console.log(igor.score)

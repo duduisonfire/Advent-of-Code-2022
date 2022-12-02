@@ -5,7 +5,7 @@ import { Scissors } from "./scissors";
 
 export class CreateGame {
 
-    static createEnemy(string: string): IOption | undefined {
+    static enemyOption(string: string): IOption | undefined {
         switch(string) {
             case 'A': return new Rock();
             case 'B': return new Paper();
@@ -13,7 +13,7 @@ export class CreateGame {
         }
     }
 
-    static createPlayer(string: string): IOption | undefined {
+    static playerOption(string: string): IOption | undefined {
         switch(string) {
             case 'X': return new Rock();
             case 'Y': return new Paper();
